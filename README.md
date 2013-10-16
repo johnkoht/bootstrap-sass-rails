@@ -18,7 +18,22 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Stylesheets
+
+You can add all of bootstrap by adding to your application.scss:
+
+    @import bootstrap
+
+
+Or you can add individual files:
+    
+    ...
+    @import bootstrap/mixins
+    @import bootstrap/buttons
+    @import bootstrap/navs
+    @import bootstrap/navbar
+    ...
+
 
 ## Contributing
 

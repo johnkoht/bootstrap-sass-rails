@@ -553,17 +553,18 @@
 
 // Centered container element
 @mixin container-fixed()
-  @include clearfix()
   margin-right: auto
   margin-left: auto
-  max-width: $screen-lg
-
+  padding-left:  ($grid-gutter-width / 2)
+  padding-right: ($grid-gutter-width / 2)
+  @include clearfix()
 
 
 // Creates a wrapper for a series of columns
 @mixin make-row($gutter: $grid-gutter-width)
+  margin-left:  ($gutter / -2)
+  margin-right: ($gutter / -2)
   @include clearfix()
-
 
 
 // Generate the extra small columns
@@ -751,48 +752,3 @@
   textarea#{$parent}
     height: auto
  
-
-
-
-@mixin media($query:$feature $value $columns, $total-columns: $grid-columns)
-
-  @if length($query) == 1
-    @media screen and ($default-feature: nth($query, 1))
-      $default-grid-columns: $grid-columns
-      $grid-columns: $total-columns
-      @content
-      $grid-columns: $default-grid-columns
-    
-
-  @else if length($query) == 2
-    @media screen and (nth($query, 1): nth($query, 2))
-      $default-grid-columns: $grid-columns
-      $grid-columns: $total-columns
-      @content
-      $grid-columns: $default-grid-columns
-    
-
-  @else if length($query) == 3
-    @media screen and (nth($query, 1): nth($query, 2))
-      $default-grid-columns: $grid-columns
-      $grid-columns: nth($query, 3)
-      @content
-      $grid-columns: $default-grid-columns
-
-
-  @else if length($query) == 4
-    @media screen and (nth($query, 1): nth($query, 2)) and (nth($query, 3): nth($query, 4))
-      $default-grid-columns: $grid-columns
-      $grid-columns: $total-columns
-      @content
-      $grid-columns: $default-grid-columns
-
-  @else if length($query) == 5
-    @media screen and (nth($query, 1): nth($query, 2)) and (nth($query, 3): nth($query, 4))
-      $default-grid-columns: $grid-columns
-      $grid-columns: nth($query, 5)
-      @content
-      $grid-columns: $default-grid-columns
-
-  @else
-    @warn "Wrong number of arguments for breakpoint(). Read the documentation for more details."
